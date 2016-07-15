@@ -1,14 +1,27 @@
 var DATA = [];
 load();
 
- $("#submit").click(function(value){
-    var takeInput = $('#input').val();
+
+
+ $("#fsubmit").click(function(value){
+    var takeInput = $('#finput').val();
     
     DATA.push("sumair:"+takeInput);
     console.log(DATA);
     RenderJSON(DATA);
     save();
-    $("#input").val('');
+    $("#finput").val('');
+   
+});
+
+$("#ssubmit").click(function(value){
+    var takeSecondInput = $('#sinput').val();
+
+    DATA.push("Asad:"+takeSecondInput);
+    RenderJSON(DATA);
+    save();
+    $('#sinput').val('');
+    
 });
 
 
@@ -24,17 +37,6 @@ function RenderJSON(data){
            DATA = [];
            save();
         });
-            
-        // $('#'+i).click(function(){
-        //     var index = $(this).attr("id");
-        //     $(this).remove();
-
-        //     //var index = DATA.indexOf(myId);
-        //     if(index > -1){
-        //         DATA.splice(index,1);
-        //         save();
-        //     }
-        // });
     }
 }
 
@@ -51,12 +53,17 @@ function save(){
 
 function load(){
 
-    // DATA = JSON.parse(localStorage.myData);
-    // RenderJSON(DATA);
     $.get('http://datastore.asadmemon.com/sumair',function(res){
 		DATA = res;
         RenderJSON(DATA);
 
-        console.log(res);   
+    
 	});
-}        
+}  
+
+$(document).ready(
+    function(){
+        setInterval(function(){
+            load();
+        },1000);
+    });
