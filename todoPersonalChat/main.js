@@ -2,7 +2,8 @@ var DATA = [];
 load();
 
 
-
+// The method fires when user 1 presses send button
+// The method pushes data to the DATA[] array, Renders and saves
  $("#fsubmit").click(function(value){
     var takeInput = $('#finput').val();
     
@@ -14,6 +15,8 @@ load();
    
 });
 
+// The method given below fires when second user presses send button
+// Renders data into DATA[] array
 $("#ssubmit").click(function(value){
     var takeSecondInput = $('#sinput').val();
 
@@ -24,11 +27,12 @@ $("#ssubmit").click(function(value){
     
 });
 
-
+// This method appends the messages and displays it in the view. 
+// This method is also responsible for "Clearing" the chat from Server.
 function RenderJSON(data){
 
         $('#container').empty();
-        for(var i=0; i<data.length;i++){
+        for(var i=0; i<data.length;i++){    //This loop traverses through the DATA[] array to display message on view.
             
         $('#container').append(data[i]+"</br>");
 
@@ -40,10 +44,10 @@ function RenderJSON(data){
     }
 }
 
+// This method sends data to the server and stores it there.
 function save(){
-    // localStorage.myData = JSON.stringify(DATA);
     $.ajax({
-	    url: 'http://datastore.asadmemon.com/sumair', 
+	    url: 'http://datastore.asadmemon.com/soc', 
 	    type: 'POST', 
 	    contentType: 'application/json', 
 	    data: JSON.stringify(DATA),
@@ -51,9 +55,10 @@ function save(){
 	});
 }
 
+// This method loads data from the server
 function load(){
 
-    $.get('http://datastore.asadmemon.com/sumair',function(res){
+    $.get('http://datastore.asadmemon.com/soc',function(res){
 		DATA = res;
         RenderJSON(DATA);
 
@@ -61,9 +66,12 @@ function load(){
 	});
 }  
 
+// This method is responsible for creating intervals, so the page refreshes automatically
+
 $(document).ready(
     function(){
         setInterval(function(){
             load();
         },1000);
-    });
+    }
+);
