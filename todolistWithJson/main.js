@@ -31,11 +31,24 @@ function RenderJSON(data){
 }
 
 function save(){
-    localStorage.myData = JSON.stringify(DATA);
+    // localStorage.myData = JSON.stringify(DATA);
+    $.ajax({
+	    url: 'http://datastore.asadmemon.com/sumair', 
+	    type: 'POST', 
+	    contentType: 'application/json', 
+	    data: JSON.stringify(DATA),
+	    success:function(res){console.log(res);}
+	});
 }
 
 function load(){
 
-   DATA = JSON.parse(localStorage.myData);
-   RenderJSON(DATA);
+    // DATA = JSON.parse(localStorage.myData);
+    // RenderJSON(DATA);
+    $.get('http://datastore.asadmemon.com/sumair',function(res){
+		DATA = res;
+        RenderJSON(DATA);
+
+        console.log(res);   
+	});
 }        
