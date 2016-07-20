@@ -1,3 +1,7 @@
+var nick;
+$(document).ready(function(){
+    nick = window.prompt("Enter Your Nick");
+});
 var ref = firebase.database().ref('/msgs');
 ref.on('child_added',function(snapshot){
     $('#container').append("<div>" + snapshot.val()+"</div>");
@@ -5,10 +9,5 @@ ref.on('child_added',function(snapshot){
 
 $('#fsubmit').on('click',function(){
     var text = $('#finput').val();
-    ref.push("sumair" + ": " + text);
+    ref.push(nick + " : " + text);
 }); 
-
-$('#ssubmit').on('click',function(){
-    var text = $('#sinput').val();
-    ref.push("asad: " + text);
-});
