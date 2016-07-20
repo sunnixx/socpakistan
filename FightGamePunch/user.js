@@ -27,7 +27,7 @@ user.prototype.player = function(name,health){
     $('#container').append('</br>'+this.name + " has health at" + this.health);
 }
 
-user.prototype.punch = function(name){
+user.prototype.punch = function(name,health){
     if(this.name == name){
         $('#fight').append('</br>'+this.name + " Looses health" + this.health-2)
     }
