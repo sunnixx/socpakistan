@@ -10,4 +10,5 @@ ref.on('child_added',function(snapshot){
 $('#fsubmit').on('click',function(){
     var text = $('#finput').val();
     ref.push(nick + " : " + text);
+    $('#finput').val(' ');
 }); 
