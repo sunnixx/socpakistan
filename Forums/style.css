@@ -1,4 +1,16 @@
+body{
+  background-color: #ecf0f1
+}
+
 #container{
-        font-family:monospace;
-        font-weight:bold;
-      }
+  background-color: #fff;
+  margin-top: 100px;
+  padding-top:20px;
+  border-radius: 10px;
+  font-family:tahoma;
+  font-weight:bold;
+}
+
+.delete:hover{
+  color:red;
+}
