@@ -112,6 +112,10 @@ textarea {
     padding-top: 2%;
 }
 
+.header-right button, .header-right span{
+    margin-right: 10px;
+}
+
 #profilePic{
     width: 16%;
     border-radius: 25px;
