@@ -1,0 +1,14 @@
+{
+  "name": "todowithnodejs",
+  "version": "1.0.0",
+  "description": "Lesson 2 : Using Nodejs to create Todo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sumair",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
