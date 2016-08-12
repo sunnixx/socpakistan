@@ -1,5 +1,30 @@
+	
+	 <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery.min.js"></script>
+  </head>
+  <body>
 <% if (!user) { %>
 	<p>Welcome! Please <a href="/login">log in</a>.</p>
 <% } else { %>
-	<p>Hello, <%= user.username %>. View your <a href="/profile">profile</a>.</p>
+
+    <input type="text" id="input"/> <br>
+    <input type="submit" id="submit"> <br>
+    <div id="container">
+        <% for(var i = 0; i<user.msg.length; i++){ %>
+       		<li>
+			   <div id='<% i %>'>
+			   <label>
+			   	<input type="checkbox" />
+				   <%= user.msg[i] %>
+				</label>
+			</div>
+			</li>
+		<% } %>
+    </div>
+    <script src="main.js" type="text/javascript">
+    </script>
+    
+  
 <% } %>
+</body>

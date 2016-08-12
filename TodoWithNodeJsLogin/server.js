@@ -2,6 +2,11 @@ var express = require('express');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 var db = require('./db');
+var bodyParser = require('body-parser');
+// var app = express();
+
+
+
 
 
 // Configure the local strategy for use by Passport.
@@ -56,16 +61,20 @@ app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
+app.use(express.static('public'));
+
+app.use(bodyParser.json()); // for parsing application/json
+
 // Initialize Passport and restore authentication state, if any, from the
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Define routes.
-app.get('/',
-  function(req, res) {
-    res.render('home', { user: req.user });
-  });
+// // Define routes.
+// app.get('/',
+//   function(req, res) {
+//     res.render('home', { user: req.user });
+//   });
 
 app.get('/login',
   function(req, res){
@@ -84,10 +93,20 @@ app.get('/logout',
     res.redirect('/');
   });
 
-app.get('/profile',
+app.get('/',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
-    res.render('profile', { user: req.user });
+    // res.render('profile', { user: req.user });
+    res.render('home',{msg:req.user.msg, user: req.user })
   });
 
-app.listen(3000);
+
+app.get('/getTodo', function (req, res) {
+  res.send(req.user.todoList);
+});
+
+app.post('/setTodo', function (req, res) {
+  var userjson = req.body;
+  db.users.setTodoListByUsername(req.user.username, userjson);
+});
+app.listen(80);
